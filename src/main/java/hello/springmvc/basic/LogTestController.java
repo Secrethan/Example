@@ -1,13 +1,15 @@
 package hello.springmvc.basic;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 public class LogTestController {
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    //private final Logger log = LoggerFactory.getLogger(getClass());
 
     @RequestMapping("/log-test")
     public String logTest(){
@@ -23,6 +25,8 @@ public class LogTestController {
         log.warn("warn log = {}", name);
 
 
+        // 현재 로그 레벨 설정 = debug 이기 때문에 출력되지는 않는다. 하지만 ' + ' 연산이 실행됨에 따라 불필요한 자원 소모가 발생하니 주의 !!
+        log.trace("trace log = {}" +name);
         return "ok";
 
 
